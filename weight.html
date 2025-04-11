@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weight Unit Converter</title>
+   <style>body{font-family:sans-serif;padding:2em;}form{margin-bottom:1em;}label{margin-right:.7em;}select,input[type='number']{margin:.5em 1em .5em 0;}button{margin:1em 0;}footer{margin-top:2em;font-size:.95em;}</style>
+   <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+  <h1>Weight Converter</h1>
+  <form method="get" action="">
+    <label for="value">Value:</label>
+    <input type="number" name="value" id="value" step="any" required min="0" max="1000000" value="">
+    <label for="from">From:</label>
+    <select name="from" id="from">
+      <option value="milligram">Milligram</option>
+      <option value="gram">Gram</option>
+      <option value="kilogram">Kilogram</option>
+      <option value="ounce">Ounce</option>
+      <option value="pound">Pound</option>
+    </select>
+    <label for="to">To:</label>
+    <select name="to" id="to">
+      <option value="milligram">Milligram</option>
+      <option value="gram">Gram</option>
+      <option value="kilogram">Kilogram</option>
+      <option value="ounce">Ounce</option>
+      <option value="pound">Pound</option>
+    </select>
+    <button type="submit">Convert</button>
+  </form>
+  <div id="result">
+    <!-- Result will be displayed here -->
+    <script>
+      function convertWeight(value, from, to) {
+        const base = {
+          milligram: 0.001,
+          gram: 1,
+          kilogram: 1000,
+          ounce: 28.3495,
+          pound: 453.592
+        };
+        if (!(from in base) || !(to in base)) return NaN;
+        const grams = value * base[from];
+        return grams / base[to];
+      }
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('value') && params.has('from') && params.has('to')) {
+        const val = parseFloat(params.get('value'));
+        const from = params.get('from');
+        const to = params.get('to');
+        if (!isNaN(val)) {
+          const result = convertWeight(val, from, to);
+          document.getElementById('result').innerHTML = `<b>Result:</b> ${val} ${from} = ${result} ${to}`;
+          document.getElementById('value').value = val;
+          document.getElementById('from').value = from;
+          document.getElementById('to').value = to;
+        }
+      }
+    </script>
+  </div>
+  <footer>
+    <a href="index.html">Back to Home</a>
+  </footer>
+</body>
+</html>

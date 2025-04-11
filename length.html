@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Length Unit Converter</title>
+   <style>body{font-family:sans-serif;padding:2em;}form{margin-bottom:1em;}label{margin-right:.7em;}select,input[type='number']{margin:.5em 1em .5em 0;}button{margin:1em 0;}footer{margin-top:2em;font-size:.95em;}</style>
+   <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+  <h1>Length Converter</h1>
+  <form method="get" action="">
+    <label for="value">Value:</label>
+    <input type="number" name="value" id="value" step="any" required value="">
+    <label for="from">From:</label>
+    <select name="from" id="from">
+      <option value="millimeter">Millimeter</option>
+      <option value="centimeter">Centimeter</option>
+      <option value="meter">Meter</option>
+      <option value="kilometer">Kilometer</option>
+      <option value="inch">Inch</option>
+      <option value="foot">Foot</option>
+      <option value="yard">Yard</option>
+      <option value="mile">Mile</option>
+    </select>
+    <label for="to">To:</label>
+    <select name="to" id="to">
+      <option value="millimeter">Millimeter</option>
+      <option value="centimeter">Centimeter</option>
+      <option value="meter">Meter</option>
+      <option value="kilometer">Kilometer</option>
+      <option value="inch">Inch</option>
+      <option value="foot">Foot</option>
+      <option value="yard">Yard</option>
+      <option value="mile">Mile</option>
+    </select>
+    <button type="submit">Convert</button>
+  </form>
+  <div id="result">
+    <!-- Result will be displayed here -->
+    <script>
+      function convertLength(value, from, to) {
+        const base = {
+          millimeter: 0.001,
+          centimeter: 0.01,
+          meter: 1,
+          kilometer: 1000,
+          inch: 0.0254,
+          foot: 0.3048,
+          yard: 0.9144,
+          mile: 1609.34
+        };
+        if (!(from in base) || !(to in base)) return NaN;
+        const meters = value * base[from];
+        return meters / base[to];
+      }
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('value') && params.has('from') && params.has('to')) {
+        const val = parseFloat(params.get('value'));
+        const from = params.get('from');
+        const to = params.get('to');
+        if (!isNaN(val)) {
+          const result = convertLength(val, from, to);
+          document.getElementById('result').innerHTML = `<b>Result:</b> ${val} ${from} = ${result} ${to}`;
+          document.getElementById('value').value = val;
+          document.getElementById('from').value = from;
+          document.getElementById('to').value = to;
+        }
+      }
+    </script>
+  </div>
+  <footer>
+    <a href="index.html">Back to Home</a>
+  </footer>
+</body>
+</html>

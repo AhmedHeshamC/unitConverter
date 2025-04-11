@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Unit Converter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Temperature Converter</h1>
+  <form method="get" action="">
+    <label for="value">Value</label>
+     <input type="number" name="value" id="value" step="any" required min="0" max="1000000" value="">
+    <label for="from">From:</label>
+    <select name="from" id="from">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+      <option value="kelvin">Kelvin</option>
+    </select>
+    <label for="to">To:</label>
+    <select name="to" id="to">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+      <option value="kelvin">Kelvin</option>
+    </select>
+    <button type="submit">Convert</button>
+  </form>
+  <div id="result">
+    <!-- Result will be displayed here -->
+    <script>
+      function convertTemperature(value, from, to) {
+        if (from === to) return value;
+        let c;
+        // First convert to Celsius
+        if (from === 'celsius') c = value;
+        else if (from === 'fahrenheit') c = (value - 32) * 5 / 9;
+        else if (from === 'kelvin') c = value - 273.15;
+        else return NaN;
+        // Then convert from Celsius
+        if (to === 'celsius') return c;
+        else if (to === 'fahrenheit') return c * 9 / 5 + 32;
+        else if (to === 'kelvin') return c + 273.15;
+        else return NaN;
+      }
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('value') && params.has('from') && params.has('to')) {
+        const val = parseFloat(params.get('value'));
+        const from = params.get('from');
+        const to = params.get('to');
+        if (!isNaN(val)) {
+          const result = convertTemperature(val, from, to);
+          document.getElementById('result').innerHTML = `<b>Result:</b> ${val} ${from.charAt(0).toUpperCase() + from.slice(1)} = ${result} ${to.charAt(0).toUpperCase() + to.slice(1)}`;
+          document.getElementById('value').value = val;
+          document.getElementById('from').value = from;
+          document.getElementById('to').value = to;
+        }
+      }
+    </script>
+  </div>
+  <footer>
+    <a href="index.html">Back to Home</a>
+  </footer>
+</body>
+</html>

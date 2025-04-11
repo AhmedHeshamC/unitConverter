@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+:root {
+  --primary: #2563eb;
+  --primary-light: #3b82f6;
+  --background: #f8fafc;
+  --foreground: #22223b;
+  --card-bg: #fff;
+  --shadow: 0 4px 24px 0 rgba(30,35,90,0.08);
+  --radius: 1.1em;
+  --transition: 0.18s cubic-bezier(.2,.8,.4,1);
+}
+
+html, body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  font-weight: 600;
+  letter-spacing: -.02em;
+  margin: 2.2em 0 1em 0;
+  font-size: 2.3em;
+}
+
+.card, form {
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  padding: 2.4em 2em 2em 2em;
+  margin: 2em 0 0 0;
+  min-width: 320px;
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+label {
+  font-size: 1em;
+  font-weight: 500;
+}
+
+input[type='number'], select {
+  font-size: 1.08em;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5em;
+  padding: 0.6em 1em;
+  background: #f3f4f6;
+  transition: border var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+
+input[type='number']:focus, select:focus {
+  border: 1.5px solid var(--primary-light);
+  background: #fff;
+  box-shadow: 0 2px 10px 0 #eff6ff;
+}
+
+button[type='submit'], button, input[type="submit"] {
+  background: linear-gradient(90deg, var(--primary) 50%, var(--primary-light) 100%);
+  border: none;
+  color: #fff;
+  padding: 0.8em 1.6em;
+  font-size: 1em;
+  font-weight: 600;
+  border-radius: 0.7em;
+  margin-top: 0.6em;
+  box-shadow: 0 2px 8px #3b82f640;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+button[type='submit']:hover, button:hover, input[type="submit"]:hover {
+  background: linear-gradient(90deg, var(--primary-light) 0%, var(--primary) 70%);
+  transform: translateY(-1.5px) scale(1.035);
+  box-shadow: 0 6px 16px #3b82f655;
+}
+
+#result {
+  margin: 0.8em 0 0.4em 0;
+  font-size: 1.18em;
+  font-weight: 500;
+  background: #e0e7ff;
+  color: #273c75;
+  border-radius: .7em;
+  padding: 0.6em 1em;
+  box-shadow: 0 2px 8px #b4d0fe20;
+}
+
+footer {
+  margin: 3em 0 0 0;
+  color: #69708a;
+  font-size: 1em;
+}
+
+footer a {
+  color: var(--primary);
+  padding: 0.1em 0.2em;
+  border-radius: 0.4em;
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition);
+  font-weight: 600;
+}
+footer a:hover {
+  background: var(--primary-light);
+  color: #fff;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 2em 0 2em 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4em;
+}
+
+ul li a {
+  background: linear-gradient(90deg, #eef2ff 50%, #e0e7ff 100%);
+  color: var(--primary);
+  display: block;
+  padding: 1.15em 2em;
+  border-radius: 1.2em;
+  font-size: 1.12em;
+  font-weight: 600;
+  transition: background var(--transition), color var(--transition), transform var(--transition);
+  box-shadow: 0 2px 10px #e0e7ff55;
+  text-align: center;
+  text-decoration: none;
+}
+ul li a:hover {
+  background: linear-gradient(90deg, var(--primary) 50%, var(--primary-light) 100%);
+  color: #fff;
+  transform: scale(1.045);
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 0.4em;
+  }
+  .card, form {
+    padding: 1.4em 0.8em;
+    min-width: unset;
+    width: 98vw;
+    max-width: 99vw;
+  }
+  h1 {
+    font-size: 1.3em;
+    margin: 1.5em 0 0.7em 0;
+  }
+  ul {
+    gap: 1em;
+  }
+  ul li a {
+    font-size: 1em;
+    padding: 1em 1em;
+  }
+}
