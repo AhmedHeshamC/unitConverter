@@ -40,3 +40,19 @@ No server setup is required. All conversions are handled in the browser.
 ## Project URLs
 https://roadmap.sh/projects/unit-converter
 https://github.com/AhmedHeshamC/unitConverter
+
+---
+
+
+## 🤝 Contributing
+
+1. Fork the repo
+2. Create feature branch
+3. Write tests
+4. Submit a PR
+
+Please adhere to the existing code style and coverage requirements.
+
+---
+
+© 2025 Ahmed Hesham. MIT License.
